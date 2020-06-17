@@ -1,4 +1,4 @@
-setTimeout
+setTimeout //downloadswhenpageloaded
 (
 
   function ()
@@ -27,7 +27,7 @@ setTimeout
       });
   }, 20);
 
-  function butonileindirme() {
+  function butonileindirme() { //downloadswhenbuttonclickedwithatimer
 
     setTimeout
     (
@@ -60,3 +60,11 @@ setTimeout
 
 
   }
+
+
+
+------------------------------------
+
+
+
+
