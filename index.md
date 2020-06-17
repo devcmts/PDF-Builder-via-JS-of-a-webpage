@@ -1,37 +1,63 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/devcmts/convertdiv-topdf-via_js/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+setTimeout
+(
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+  function ()
 
-### Markdown
+  {
+      var HTML_Width = $(".containerbox_1170").width();
+      var HTML_Height = $(".containerbox_1170").height();
+      var top_left_margin = 0;
+      var PDF_Width = HTML_Width + (top_left_margin * 2);
+      var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+      var canvas_image_width = HTML_Width;
+      var canvas_image_height = HTML_Height;
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+      var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
 
-```markdown
-Syntax highlighted code block
+      html2canvas($(".containerbox_1170")[0]).then(function (canvas) {
+          var imgData = canvas.toDataURL("image/jpeg", 1.0);
+          var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+          pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+          for (var i = 1; i <= totalPDFPages; i++) {
+              pdf.addPage(PDF_Width, PDF_Height);
+              pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+          }
+          pdf.save("result.pdf");
 
-# Header 1
-## Header 2
-### Header 3
+      });
+  }, 20);
 
-- Bulleted
-- List
+  function butonileindirme() {
 
-1. Numbered
-2. List
+    setTimeout
+    (
 
-**Bold** and _Italic_ and `Code` text
+      function ()
 
-[Link](url) and ![Image](src)
-```
+      {
+          var HTML_Width = $(".containerbox_1170").width();
+          var HTML_Height = $(".containerbox_1170").height();
+          var top_left_margin = 0;
+          var PDF_Width = HTML_Width + (top_left_margin * 2);
+          var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+          var canvas_image_width = HTML_Width;
+          var canvas_image_height = HTML_Height;
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+          var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
 
-### Jekyll Themes
+          html2canvas($(".containerbox_1170")[0]).then(function (canvas) {
+              var imgData = canvas.toDataURL("image/jpeg", 1.0);
+              var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+              pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+              for (var i = 1; i <= totalPDFPages; i++) {
+                  pdf.addPage(PDF_Width, PDF_Height);
+                  pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+              }
+              pdf.save("result.pdf");
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/devcmts/convertdiv-topdf-via_js/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+          });
+      }, 20);
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+  }
